@@ -35,3 +35,24 @@ a {
     transform: rotate(360deg);
   }
 }
+
+.body_wrap {
+  margin: 0 15%;
+}
+
+.question_wrap{
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+}
+
+.question_number {
+  margin-right: 50px;
+}
+
+.answer {
+  margin-left: 0;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
