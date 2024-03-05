@@ -1,9 +1,9 @@
 import React from "react";
 
-const AnswerItem = ({answer}) => {
+const AnswerItem = (props) => {
     return (
         <div>
-            <div onClick={console.log('Ckicked!!!')}>{answer.body}</div>
+            <label onClick={props.onClick}><input type='radio'/>{props.answer}</label>
         </div>
     )
 }

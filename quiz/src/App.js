@@ -1,6 +1,9 @@
 import './styles/App.css';
 import {HashRouter, Routes, Route, NavLink} from 'react-router-dom'
 import React, { useState } from 'react';
+import AnswerList from './components/AnswerList';
+import QuestionItem from './components/QuestionItem';
+import random from 'random'
 
 function Main() {
   return (
@@ -11,83 +14,50 @@ function Main() {
   )
 }
 
-function Qestion(props) {
-  return (
-    <div className='question_wrap'>
-      <div className='question_number'>{props.value[props.value.length - 1]}</div>
-      <div className='question_body'>{props.value}</div>
-    </div>
-  )
-}
-
-function Answer(props) {
-  return (
-    <label onClick={props.onClick}><input type='radio'/>{props.value}</label>
-  )
-}
-
 function Body(props) {
- 
-  function renderQestion(question) {
-    return (
-      <Qestion
-        value={question}
-      />
-    );
-  }
-
-  function renderAnswer(i, answer) {
-    console.log
-    return (
-      <Answer
-        value={answer[i]}
-      />
-    );
-  }
-  
   return (
     <div>
       <h1>Тестирование</h1>
       <div className='body_wrap'>
-        {renderQestion(props.question)}
-
-        <div className='answer'>
-          {renderAnswer(0, props.answer)}
-          {renderAnswer(1, props.answer)}
-          {renderAnswer(2, props.answer)}
-          {renderAnswer(3, props.answer)}
-        </div>
-        {/* <NavLink to='/end'>Закончить</NavLink> */}
+        <QuestionItem num={props.num} question={props.question}/>
+        <AnswerList answers={props.answers}/>
       </div>     
     </div>
   );
 }
 
 function Quiz() {
-  const [questions, answers_cache] = useState([
-    'Вопрос 1', 'Вопрос   2', 'Вопрос 3', 'Вопрос4', 'Вопрос5', 'Вопрос6', 'Вопрос7', 'Вопрос8', 'Вопрос9', 'Вопрос10'
-  ],
-  [
-    ['Ответ-1 для 1 вопроса', 'Ответ-2 для 1 вопроса', 'Ответ-3 для 1 вопроса','Ответ-4 для 1 вопроса'],
-    ['Ответ-1 для 2 вопроса', 'Ответ-2 для 2 вопроса', 'Ответ-3 для 2 вопроса', 'Ответ-4 для 2 вопроса']
+  const [num, setNum] = useState(1)
+  const [questions, setQuestions] = useState([
+    'Вопрос 1'
+  ])
+
+  const [answers, setAnswers] = useState([
+    ['Ответ-1 для 1 вопроса', 'Ответ-2 для 1 вопроса', 'Ответ-3 для 1 вопроса','Ответ-4 для 1 вопроса']
+    
   ])
 
   function handlerClickNext() {
+    //проверка на то что выбран какой-то ответ
+    if(num < 10) {
+      setNum(num + 1)
+      setQuestions(['Вопрос ' + (num + 1)])
+      setAnswers('Ответ-1 для 2 вопроса', 'Ответ-2 для 2 вопроса', 'Ответ-3 для 2 вопроса','Ответ-4 для 2 вопроса')
+    } else {
+      return (
+        <div>
+          <NavLink to='/end'>Закончить</NavLink>
+        </div>
+      )
+      
+    }
     console.log('Clicked next!')
-  }
-
-  function renderBody(i) {
-    return (
-      <Body 
-        question={questions[i]}
-        answer={answers_cache[i]}
-      />
-    );
+    
   }
 
   return (
     <div>
-      {renderBody(0)}
+      <Body num={num} question={questions[0]} answers={answers[0]}/>
       <button className='next_question' 
         onClick={() => 
           {
