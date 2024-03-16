@@ -1,4 +1,5 @@
 const {Answer} = require('../models/models')
+const path = require('path');
 const ApiError = require('../error/ApiError')
 
 class AnswerController {
@@ -15,7 +16,8 @@ class AnswerController {
     }
 
     async getAll(req, res) {
-        const answers = await Answer.findAll()
+        let id = 1
+        const answers = await Answer.findAndCountAll({where:{id}})
         return res.json(answers)
     }
 }
