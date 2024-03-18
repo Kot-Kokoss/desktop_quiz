@@ -1,13 +1,13 @@
 import React from "react";
 import AnswerItem from "./AnswerItem";
 
-const AnswerList = ({answers}) => {    
+export const AnswerList = (props) => {    
     function handlerClickAnswer (i) {
-        console.log('Clicked onn a')
+        console.log('Clicked!!!')
     }
     return (
         <div className="answer_list">
-            {answers.map((answer) => {
+            {props.answers.map((answer) => {
                 return <AnswerItem onClick={() => 
                     {
                       handlerClickAnswer()

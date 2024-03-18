@@ -1,9 +1,12 @@
 import './styles/App.css';
-import {HashRouter, Routes, Route, NavLink} from 'react-router-dom'
-import React, { useState } from 'react';
+import { HashRouter, Routes, Route, NavLink } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react';
 import AnswerList from './components/AnswerList';
 import QuestionItem from './components/QuestionItem';
-import random from 'random'
+import { observer } from 'mobx-react-lite';
+import { Context } from './index.js';
+import { fetchQuestions } from './http/questionApi.js';
+import Task from './components/Task.js';
 
 function Main() {
   return (
@@ -25,48 +28,31 @@ function Body(props) {
     </div>
   );
 }
+const Quiz = observer(() => {
+  const {main} = useContext(Context)
 
-function Quiz() {
-  const [num, setNum] = useState(1)
-  const [questions, setQuestions] = useState([
-    'Вопрос 1'
-  ])
+  // useEffect(() => {
+  //   fetchQuestions().then(data => main.setQuestions(data))
+  // }, [])
 
-  const [answers, setAnswers] = useState([
-    ['Ответ-1 для 1 вопроса', 'Ответ-2 для 1 вопроса', 'Ответ-3 для 1 вопроса','Ответ-4 для 1 вопроса']
-    
-  ])
 
-  function handlerClickNext() {
-    //проверка на то что выбран какой-то ответ
-    if(num < 10) {
-      setNum(num + 1)
-      setQuestions(['Вопрос ' + (num + 1)])
-      setAnswers('Ответ-1 для 2 вопроса', 'Ответ-2 для 2 вопроса', 'Ответ-3 для 2 вопроса','Ответ-4 для 2 вопроса')
-    } else {
-      return (
-        <div>
-          <NavLink to='/end'>Закончить</NavLink>
-        </div>
-      )
-      
-    }
-    console.log('Clicked next!')
-    
-  }
+  const [num, setNum] = useState(0)
 
   return (
     <div>
-      <Body num={num} question={questions[0]} answers={answers[0]}/>
+      <Task num={num}/>
       <button className='next_question' 
         onClick={() => 
           {
-            handlerClickNext()
+            setNum(num + 1)
           }
         }>Следующий</button>
+        {/* {main.answers.map(question => 
+          <div key={question.id}>{question.body}</div>
+        )} */}
     </div>
   );
-}
+})
 
 function End() {
   return (
