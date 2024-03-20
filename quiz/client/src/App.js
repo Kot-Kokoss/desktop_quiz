@@ -1,12 +1,11 @@
 import './styles/App.css';
 import { HashRouter, Routes, Route, NavLink } from 'react-router-dom'
 import React, { useContext, useEffect, useState } from 'react';
-import AnswerList from './components/AnswerList';
-import QuestionItem from './components/QuestionItem';
 import { observer } from 'mobx-react-lite';
 import { Context } from './index.js';
 import { fetchQuestions } from './http/questionApi.js';
 import Task from './components/Task.js';
+import random from 'random'
 
 function Main() {
   return (
@@ -17,40 +16,54 @@ function Main() {
   )
 }
 
-function Body(props) {
-  return (
-    <div>
-      <h1>Тестирование</h1>
-      <div className='body_wrap'>
-        <QuestionItem num={props.num} question={props.question}/>
-        <AnswerList answers={props.answers}/>
-      </div>     
-    </div>
-  );
-}
 const Quiz = observer(() => {
   const {main} = useContext(Context)
 
-  // useEffect(() => {
-  //   fetchQuestions().then(data => main.setQuestions(data))
-  // }, [])
+  const questionId = []
+  for (let i = 0; i < 10; i++) {
+    let biletId = random.int(1, 35)
+    if (String(biletId).length < 2) {
+      biletId = '0' + biletId
+    }
+    questionId.push(String( i + 1) + biletId)
+  }
+  
+  useEffect(() => {
+    fetchQuestions().then(data => main.setQuestions(data))
+    console.log(main.question)
+  }, [])
+ 
 
-
+  
   const [num, setNum] = useState(0)
 
+  function nextTaskHandler (i) {
+    if (i < 9) {
+      return (
+        <div>
+          <Task num={num}/>
+          <button className='next_question' 
+          onClick={() => 
+            {
+              setNum(num + 1)
+            }
+          }>Следующий</button>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Task num={num}/>
+          <NavLink to='/end'>Завершить Тестирование</NavLink>
+        </div>
+      );
+      
+    }
+  }
+
   return (
-    <div>
-      <Task num={num}/>
-      <button className='next_question' 
-        onClick={() => 
-          {
-            setNum(num + 1)
-          }
-        }>Следующий</button>
-        {/* {main.answers.map(question => 
-          <div key={question.id}>{question.body}</div>
-        )} */}
-    </div>
+    <div>1</div>
+    // nextTaskHandler(num)
   );
 })
 

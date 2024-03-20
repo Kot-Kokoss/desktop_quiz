@@ -8,7 +8,7 @@ export const AnswerList = (props) => {
     return (
         <div className="answer_list">
             {props.answers.map((answer) => {
-                return <AnswerItem onClick={() => 
+                return <AnswerItem key={answer.id} onClick={() => 
                     {
                       handlerClickAnswer()
                     }} answer={answer}/>

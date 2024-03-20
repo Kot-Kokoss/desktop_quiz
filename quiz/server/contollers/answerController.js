@@ -1,6 +1,6 @@
 const {Answer} = require('../models/models')
 const path = require('path');
-const ApiError = require('../error/ApiError')
+const ApiError = require('../error/ApiError');
 
 class AnswerController {
     async create(req, res, next) {
@@ -16,8 +16,13 @@ class AnswerController {
     }
 
     async getAll(req, res) {
-        let id = 1
-        const answers = await Answer.findAndCountAll({where:{id}})
+        const answers = await Answer.findAll()
+        return res.json(answers)
+    }
+
+    async getById(req,res) {
+        const {questionId} = req.params
+        const answers = await Answer.findAll({where: {questionId}})
         return res.json(answers)
     }
 }
