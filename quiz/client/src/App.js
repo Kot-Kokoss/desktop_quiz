@@ -3,11 +3,27 @@ import { HashRouter, Routes, Route, NavLink } from 'react-router-dom'
 import React, { useContext, useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { Context } from './index.js';
-import { fetchQuestions } from './http/questionApi.js';
+import { fetchQuestions, fetchAnswers } from './http/questionApi.js';
 import Task from './components/Task.js';
 import random from 'random'
 
 function Main() {
+  const {main} = useContext(Context)
+
+  const questionId = []
+
+  for (let i = 0; i < 10; i++) {
+    let biletId = random.int(1, 14)
+    if (String(biletId).length < 2) {
+      biletId = '0' + biletId
+    }
+    questionId.push(String(i + 1) + biletId)
+  }
+  
+  useEffect(() => {
+    fetchQuestions(questionId).then(data => main.setQuestions(data))
+    fetchAnswers(questionId).then(data => main.setAnswers(data))
+  }, [])
   return (
     <div>
       <h1>Тестирование по тактике</h1>
@@ -17,24 +33,6 @@ function Main() {
 }
 
 const Quiz = observer(() => {
-  const {main} = useContext(Context)
-
-  const questionId = []
-  for (let i = 0; i < 10; i++) {
-    let biletId = random.int(1, 35)
-    if (String(biletId).length < 2) {
-      biletId = '0' + biletId
-    }
-    questionId.push(String( i + 1) + biletId)
-  }
-  
-  useEffect(() => {
-    fetchQuestions().then(data => main.setQuestions(data))
-    console.log(main.question)
-  }, [])
- 
-
-  
   const [num, setNum] = useState(0)
 
   function nextTaskHandler (i) {
@@ -62,8 +60,8 @@ const Quiz = observer(() => {
   }
 
   return (
-    <div>1</div>
-    // nextTaskHandler(num)
+    
+    nextTaskHandler(num)
   );
 })
 
