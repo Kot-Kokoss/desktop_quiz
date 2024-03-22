@@ -9,9 +9,12 @@ const Quiz = observer(() => {
     const [num, setNum] = useState(0)
   
     function trueCounter () {
-      if (main.getRight === 1) {
-        main.setCountRight(main.getCountRight + 1)
-        console.log("Верных", main.getCountRight)
+      if (main.getRight !== null) {
+        setNum(num + 1)
+        if (main.getRight === 1) {
+          main.setCountRight(main.getCountRight + 1)
+          console.log("Верных", main.getCountRight)
+        }
         main.setRight(null)
     } 
     
@@ -25,17 +28,18 @@ const Quiz = observer(() => {
             <button className='next_question' 
             onClick={() => 
               {
-                setNum(num + 1)
                 trueCounter()
               }
             }>Следующий</button>
           </div>
         );
-      } else if (i === 10){
+      } else {
         return (
           <div>
-            {/* <Task num={num}/> */}
-            <NavLink onClick={trueCounter()} to='/end'>Завершить Тестирование</NavLink>
+            <h1>Тестирование</h1>
+            <button className='next_question'>
+              <NavLink onClick={trueCounter()} to='/end'>Завершить Тестирование</NavLink>
+              </button>
           </div>
         );
         

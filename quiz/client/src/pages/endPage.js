@@ -17,10 +17,12 @@ const End = observer(() => {
     }
   
     return (
-      <div>
+      <div >
         <h1>Результат тестирования</h1>
-        <div>Ваша оценка {result}</div>
-        <NavLink to='/'>Вернуться в начальный экран</NavLink>
+        <div className='body_wrap'>
+         <div className='question_wrap'>Ваша оценка: {result}</div>
+          <button className='next_question'><NavLink to='/'>Вернуться в начальный экран</NavLink></button>
+        </div>        
       </div>
     )
   })
