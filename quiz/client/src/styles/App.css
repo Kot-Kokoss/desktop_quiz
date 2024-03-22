@@ -37,17 +37,18 @@ a {
 }
 
 .body_wrap {
-  margin: 0 15%;
+  margin: 0 10%;
 }
 
 .question_wrap{
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
 }
 
 .question_number {
-  margin-right: 50px;
+  margin-right: 30px;
+  font-size: 20px;
 }
 
 .answer_list {
@@ -56,3 +57,8 @@ a {
   flex-direction: column;
   text-align: start;
 }
+
+.answer_item {
+  margin-bottom: 10px;
+}
+

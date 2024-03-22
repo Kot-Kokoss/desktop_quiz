@@ -1,19 +1,24 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import AnswerItem from "./AnswerItem";
+import { Context } from "..";
 
 export const AnswerList = (props) => {
-    const [ActiveAnswer, setActiveAnswer] = useState()   
-    function handlerClickAnswer (i) {
-        console.log('Clicked!!!')
-        
+    const {main} = useContext(Context)
+ 
+    function handlerClickAnswer (right) {
+        if (right) {
+            console.log('Верно')
+            main.setRight(1)
+        } else {
+            main.setRight(0)
+        }
     }
     return (
         <div className="answer_list">
             {props.answers.map((answer) => {
                 return <AnswerItem key={answer.id} onClick={() => 
                     {
-                      handlerClickAnswer(),
-                      setActiveAnswer(answer.id)
+                      handlerClickAnswer(answer.right)
                     }} answer={answer}/>
             }                
             )}

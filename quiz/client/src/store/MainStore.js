@@ -4,6 +4,8 @@ export default class MainStore {
     constructor() {
         this._questions = []
         this._answers = []
+        this.right = null
+        this.countRight = null
         makeAutoObservable(this)
     }
 
@@ -15,6 +17,14 @@ export default class MainStore {
         this._answers = answers
     }
 
+    setRight(right) {
+        this.right = right
+    }
+
+    setCountRight(countRight) {
+        this.countRight = countRight
+    }
+
     get questions() {
         return this._questions
     }
@@ -23,4 +33,11 @@ export default class MainStore {
         return this._answers
     }
 
+    get getRight() {
+        return this.right
+    }
+
+    get getCountRight() {
+        return this.countRight
+    }
 }

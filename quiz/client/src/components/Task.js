@@ -8,9 +8,8 @@ const Task = (props) => {
     const questions = main.questions
     const answers = main.answers
 
-    const [TrueAnswer, setTrueAnswer] = useState(0)
-
     function renderNewTask(i) {
+        
         let task_id = questions[i].id
         let question_answers = []
         for (let j = 0; j < answers.length; j++) {
@@ -22,10 +21,10 @@ const Task = (props) => {
         return (
             <div>
                 <h1>Тестирование</h1>
-                <div>TIMER</div>
+                {/* <div>TIMER</div> */}
                 <div className='body_wrap'>
                     <QuestionItem num={i + 1} question={questions[i].body}/>
-                    <AnswerList answers={question_answers}/>
+                    <AnswerList num={i} answers={question_answers}/>
                 </div>     
             </div>
         );

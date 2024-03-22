@@ -2,8 +2,8 @@ import React from "react";
 
 const AnswerItem = (props) => {
     return (
-        <div>
-            <label onClick={props.onClick} ><input type='radio'/>{props.answer.body}</label>
+        <div className="answer_item">
+            <label onClick={props.onClick}><input type='radio' name="answer"/>{props.answer.body}</label>
         </div>
     )
 }
