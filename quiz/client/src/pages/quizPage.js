@@ -37,9 +37,7 @@ const Quiz = observer(() => {
         return (
           <div>
             <h1>Тестирование</h1>
-            <button className='next_question'>
-              <NavLink onClick={trueCounter()} to='/end'>Завершить Тестирование</NavLink>
-              </button>
+            <NavLink onClick={trueCounter()} to='/end'><button className='next_question'>Завершить Тестирование</button></NavLink>              
           </div>
         );
         

@@ -15,13 +15,13 @@ const End = observer(() => {
     } else {
       result = 'Неудовлетворительно 2'
     }
-  
+
     return (
       <div >
         <h1>Результат тестирования</h1>
         <div className='body_wrap'>
-         <div className='question_wrap'>Ваша оценка: {result}</div>
-          <button className='next_question'><NavLink to='/'>Вернуться в начальный экран</NavLink></button>
+         <div className='answer_list'>Ваша оценка: {result}</div>
+          <NavLink to='/'><button className='next_question'>Вернуться в начальный экран</button></NavLink>
         </div>        
       </div>
     )

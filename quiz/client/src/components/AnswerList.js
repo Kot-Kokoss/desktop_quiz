@@ -4,7 +4,6 @@ import { Context } from "..";
 
 export const AnswerList = (props) => {
     const {main} = useContext(Context)
- 
     function handlerClickAnswer (right) {
         if (right) {
             console.log('Верно')
@@ -16,7 +15,7 @@ export const AnswerList = (props) => {
     return (
         <div className="answer_list">
             {props.answers.map((answer) => {
-                return <AnswerItem key={answer.id} onClick={() => 
+                return <AnswerItem img={props.img} key={answer.id} onClick={() => 
                     {
                       handlerClickAnswer(answer.right)
                     }} answer={answer}/>

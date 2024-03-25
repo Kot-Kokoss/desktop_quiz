@@ -9,14 +9,6 @@ body {
 
 }
 
-a {
-  font-family: 'Roboto', sans-serif;
-  text-decoration: none;
-  color: rgb(65, 133, 110);
-  font-size: 20px;
-  padding: 5px;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -54,40 +46,51 @@ a {
 .question_wrap{
   display: flex;
   flex-wrap: nowrap;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   font-size: 24px;
   border: 2px solid rgb(65, 133, 110);
+  border-radius: 0.25rem;
   height: auto;
+  background-color: rgb(104, 187, 159);
 }
 
 .question_body {
-  padding-top: 5px;
-  padding-bottom: 10px;
+  padding: 10px 20px 10px 0;
 }
 
 .question_number {
-  padding: 5px 20px 0 5px;
+  padding: 10px 20px 0 10px;
   font-weight: bold;
 }
 
+.timer {
+  padding: 10px 10px 0 0;
+}
+
 .answer_list {
+  background-color: rgb(104, 187, 159);
   margin-left: 0;
   display: flex;
   flex-direction: column;
   text-align: start;
-}
-
-.answer_item {
-  margin-bottom: 10px;
+  border: 2px solid rgb(65, 133, 110);
+  border-radius: 0.25rem;
+  margin-bottom: 20px;
+  padding: 10px;
 }
 
 .next_question {
   background-color: white;
   border: 2px solid rgb(65, 133, 110);
   border-radius: 0.25rem;
-  padding: 0 10px;
+  padding: 5px;
   color: rgb(65, 133, 110);
   font-weight: 700;
   height: 40px;
   font-size: 18px;
+  margin-bottom: 40px;
+}
+.next_question:hover {
+  background-color: rgb(104, 187, 159);
+  color:white
 }

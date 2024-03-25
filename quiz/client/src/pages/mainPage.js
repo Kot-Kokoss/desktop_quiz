@@ -27,7 +27,7 @@ const Main = observer(() => {
     return (
       <div>
         <h1>Тестирование по тактике</h1>
-        <button className='next_question'><NavLink to='/quiz'>Начать тестирование</NavLink></button>
+        <NavLink to='/quiz'><button className='next_question'>Начать тестирование</button></NavLink>
       </div>
     )
   })
