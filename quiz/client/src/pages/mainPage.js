@@ -13,7 +13,7 @@ const Main = observer(() => {
     const questionId = []
   
     for (let i = 0; i < 10; i++) {
-      let biletId = random.int(1, 14)
+      let biletId = random.int(1, 13)
       if (String(biletId).length < 2) {
         biletId = '0' + biletId
       }
